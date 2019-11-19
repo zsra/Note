@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".screen.note.NoteFragment">
+
+    <data>
+        <variable
+            name="noteViewModelxml"
+            type="hu.zsra.note.screen.note.NoteViewModel"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/shareNote"
+            android:text="@string/share"
+            android:textSize="20sp"
+            android:layout_margin="10sp"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:textColor="@color/white"
+            android:background="@color/ThirdColor"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5sp"
+            android:layout_marginStart="5sp">
+
+            <Button
+                android:id="@+id/goBackToTitleFromNote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/back"
+                android:background="@color/SecondColor"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:layout_marginEnd="5sp"/>
+
+            <EditText
+                android:id="@+id/noteTitle_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="@string/title"
+                android:layout_marginEnd="5sp"
+                android:importantForAutofill="no" />
+
+            <Button
+                android:id="@+id/save_note"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:textColor="@color/white"
+                android:background="@color/PrimeColor"
+                android:text="@string/save"
+                android:onClick="@{() -> noteViewModelxml.onSave()}"/>
+        </LinearLayout>
+        <EditText
+            android:id="@+id/EditNoteText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textMultiLine"
+            android:gravity="left"
+            android:layout_margin="10sp"
+            android:ems="10"
+            android:hint="@string/note_body"
+            android:importantForAutofill="no"
+            tools:ignore="RtlHardcoded">
+            <requestFocus />
+        </EditText>
+    </LinearLayout>
+</layout>

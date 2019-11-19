@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".screen.contact.ContactFragment">
+
+
+    <data>
+        <variable
+            name="contactViewModelxml"
+            type="hu.zsra.note.screen.contact.ContactViewModel"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:text="@string/new_contact"
+            android:textAlignment="center"
+            android:layout_marginTop="50sp" />
+
+        <EditText
+            android:id="@+id/inputName"
+            style="@style/newContactInput"
+            android:inputType="textPersonName"
+            android:layout_marginTop="70sp"
+            android:hint="@string/contact_name"
+            android:importantForAutofill="no">
+            <requestFocus />
+        </EditText>
+
+        <EditText
+            android:id="@+id/inputEmail"
+            style="@style/newContactInput"
+            android:inputType="textEmailAddress"
+            android:layout_marginTop="20sp"
+            android:hint="@string/contact_e_mail"
+            android:importantForAutofill="no" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="100sp"
+            android:layout_marginStart="40sp"
+            android:layout_marginEnd="40sp">
+
+            <Button
+                android:id="@+id/back_to_title_from_contact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="?android:attr/borderlessButtonStyle"
+                android:text="@string/back"
+                android:background="#b23329"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
+
+            <Button
+                android:id="@+id/save_the_contact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="?android:attr/borderlessButtonStyle"
+                android:text="@string/save"
+                android:background="#111"
+                android:textStyle="bold"
+                android:textColor="#fff"
+                android:textSize="18sp"
+                android:onClick="@{() -> contactViewModelxml.onSave()}"/>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+</layout>
