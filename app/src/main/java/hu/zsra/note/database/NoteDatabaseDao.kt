@@ -14,14 +14,17 @@ interface NoteDatabaseDao {
     @Insert
     fun insert(note : Note)
 
+    @Update
+    fun update(note : Note)
+
     @Query("select * from note_table order by created_at desc")
     fun getAllNote() : LiveData<List<Note>>?
 
     @Query("select * from note_table where noteId = :id")
     fun getNoteById(id : Long) : Note?
 
-    @Query("select * from note_table where title = :title")
-    fun getNoteByTitle(title : String) : Note?
+    @Query("select * from note_table order by noteId desc limit 1")
+    fun getNewNote() : Note?
 
     @Query("delete from note_table where noteId = :id")
     fun deleteNoteById(id : Long)
@@ -33,8 +36,11 @@ interface NoteDatabaseDao {
     @Update
     fun update(contact: Contact)
 
+    @Query("select * from  contact_table order by contactId desc limit 1")
+    fun getNewContact() : Contact?
+
     @Query("select * from contact_table")
-    fun getAllContactById() : LiveData<List<Contact>>?
+    fun getAllContacts() : LiveData<List<Contact>>?
 
     @Query("select * from contact_table where contactId = :id")
     fun getContactById(id : Long) : Contact?

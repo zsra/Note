@@ -15,13 +15,30 @@ class ContactViewModel(
     dataSource: NoteDatabaseDao,
     application: Application) : AndroidViewModel(application) {
 
-    val database = dataSource
+
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+    val database = dataSource
 
     private val _eventContactFinish = MutableLiveData<Boolean>()
     val eventContactFinish: LiveData<Boolean>
         get() = _eventContactFinish
+
+    private var newContact = MutableLiveData<Contact?>()
+
+
+    private fun initNewContact() {
+        uiScope.launch {
+            newContact.value = getNewContactFromDatabase()
+        }
+    }
+
+    private suspend fun getNewContactFromDatabase() : Contact? {
+        return withContext(Dispatchers.IO) {
+            var contact = database.getNewContact()
+            contact
+        }
+    }
 
     private suspend fun insert(contact : Contact) {
         withContext(Dispatchers.IO) {
@@ -29,13 +46,28 @@ class ContactViewModel(
         }
     }
 
+    private suspend fun update(contact: Contact) {
+        withContext(Dispatchers.IO) {
+            database.update(contact)
+        }
+    }
+
+    private fun onNewContact() {
+        uiScope.launch {
+            val newContactCreate = Contact()
+            insert(newContactCreate)
+            newContact.value = getNewContactFromDatabase()
+        }
+    }
+
     public fun onSave() {
+        onNewContact()
         uiScope.launch {
             val newContact = Contact()
             newContact.Name = R.id.inputName.toString()
             newContact.Email = R.id.inputEmail.toString()
             onContactFinish()
-            insert(newContact)
+            update(newContact)
             Log.i("Data saved.", "ex: name = ${newContact.Name}")
             onContactFinishComplete()
 

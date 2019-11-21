@@ -41,7 +41,7 @@ class NoteFragment : Fragment() {
 
         val application = requireNotNull(this.activity).application
         val dataSource = NoteDatabase.getInstance(application).noteDatabaseDao
-        val viewModelFactory = ContactViewModelFactory(dataSource, application)
+        val viewModelFactory = NoteViewModelFactory(dataSource, application)
 
         val noteViewModel = ViewModelProviders.of(
             this, viewModelFactory).get(NoteViewModel::class.java)
