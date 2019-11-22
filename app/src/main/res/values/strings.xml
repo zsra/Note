@@ -1,15 +1,3 @@
 <resources>
     <string name="app_name">Note</string>
-    <string name="new_contact">New Contact</string>
-    <string name="notes">Notes</string>
-    <string name="new_note">New Note</string>
-    <string name="contact_name">Contact name</string>
-    <string name="contact_e_mail">Contact e-mail</string>
-    <string name="back">Back</string>
-    <string name="save">Save</string>
-    <string name="title">Title</string>
-    <string name="note_body">Note body</string>
-    <string name="share">Share</string>
-    <string name="contact_list">Contact List</string>
-    <string name="back_to_title">Back to Title</string>
 </resources>
