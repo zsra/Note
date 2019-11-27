@@ -6,28 +6,44 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 
 import hu.zsra.note.R
+import hu.zsra.note.database.NoteDatabase
 
 class NoteDetailsFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = NoteDetailsFragment()
-    }
-
-    private lateinit var viewModel: NoteDetailsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.note_details_fragment, container, false)
-    }
+        val binding: NoteDetailsFragmentBinding = DataBindingUtil.inflate(
+            inflater, R.layout.note_details_fragment, container, false)
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(NoteDetailsViewModel::class.java)
-        // TODO: Use the ViewModel
+        val application = requireNotNull(this.activity).application
+        val arguments = this!!.arguments?.let { NoteDetailsFragmentArgs.fromBundle(it) }
+        val dataSource = NoteDatabase.getInstance(application).noteDatabaseDao
+        val viewModelFactory = NoteDetailsViewModelFactory(dataSource, arguments!!.noteKey)
+
+        val noteDetailsViewModel = ViewModelProviders.of(this, viewModelFactory)
+            .get(NoteDetailsViewModel::class.java)
+
+        binding.noteDetailsViewModel = noteDetailsViewModel
+
+        binding.setLifecycleOwner(this)
+
+        binding.navigateToNoteList.observe(this, Observer {
+            if(it == true) {
+                this.findNavController().navigate(NoteDetailsFragmentDirections
+                    .actionNoteDetailsFragmentToNoteListFragment())
+
+                noteDetailsViewModel.doneNavigating()
+            }
+        })
+
+        return binding.root
     }
 
 }

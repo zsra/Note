@@ -6,28 +6,43 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 
 import hu.zsra.note.R
+import hu.zsra.note.database.NoteDatabase
 
 class NoteCreateFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = NoteCreateFragment()
-    }
-
-    private lateinit var viewModel: NoteCreateViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.note_create_fragment, container, false)
-    }
+        val binding: NoteCreateFragmentBinding = DataBindingUtil.inflate(
+            inflater, R.layout.note_create_fragment, container, false)
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(NoteCreateViewModel::class.java)
-        // TODO: Use the ViewModel
+        val application = requireNotNull(this.activity).application
+        val arguments = this!!.arguments?.let { NoteCreateFragmentArgs.fromBundle(it) }
+        val dataSource = NoteDatabase.getInstance(application).noteDatabaseDao
+        val viewModelFactory = NoteCreateViewModelFactory(dataSource, arguments!!.noteKey)
+
+        val noteCreateViewModel = ViewModelProviders.of(this, viewModelFactory)
+            .get(NoteCreateViewModel::class.java)
+
+        binding.noteCreateViewModel = noteCreateViewModel
+
+        binding.navigateToNoteList.observe(this, Observer {
+            if(it == true) {
+                this.findNavController().navigate(NoteCreateFragmentDirections
+                    .actionNoteCreateFragmentToNoteListFragment())
+
+                noteCreateViewModel.doneNavigating()
+            }
+        })
+
+
+        return binding.root
     }
 
 }
