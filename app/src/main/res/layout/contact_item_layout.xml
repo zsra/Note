@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</LinearLayout>
+    <data>
+        <variable
+            name="contact"
+            type="hu.zsra.note.model.Contact"/>
+        <variable
+            name="clickListener"
+            type="hu.zsra.note.screen.contact_list.ContactListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> clickListener.onClick(contact)}">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="35sp"
+            android:id="@+id/label_contact"
+            android:text="@{contact.contactName}"
+            android:textSize="22sp"
+            android:layout_marginStart="40sp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.0" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

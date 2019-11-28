@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import hu.zsra.note.database.NoteDatabaseDao
-import hu.zsra.note.model.Album
 import hu.zsra.note.model.Note
 import kotlinx.coroutines.*
 
@@ -101,11 +100,5 @@ class NoteListViewModel(
         super.onCleared()
         viewModelJob.cancel()
     }
-
-    /* -- ALBUM -- */
-
-    private val _navigateToAlbums = MutableLiveData<List<Album>>()
-    val navigateToAlbum: LiveData<List<Album>>
-        get() = _navigateToAlbums
 
 }

@@ -4,10 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import hu.zsra.note.model.Album
+import hu.zsra.note.model.Contact
 import hu.zsra.note.model.Note
 
-@Database(entities = [Note::class, Album::class], version = 1, exportSchema = false)
+@Database(entities = [Note::class, Contact::class], version = 1, exportSchema = false)
 abstract class NoteDatabase : RoomDatabase() {
 
     abstract val noteDatabaseDao : NoteDatabaseDao

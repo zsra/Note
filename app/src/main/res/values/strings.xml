@@ -9,6 +9,8 @@
     <string name="title">Title</string>
     <string name="text">Text...</string>
     <string name="empty">Empty</string>
-    <string name="album">album</string>
-    <string name="albums">Albums</string>
+    <string name="contact_name">Contact Name</string>
+    <string name="contact_email">Contact Email</string>
+    <string name="name">Name</string>
+    <string name="contacts">contacts</string>
 </resources>

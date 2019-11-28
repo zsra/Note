@@ -5,7 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import hu.zsra.note.model.Album
+import hu.zsra.note.model.Contact
 import hu.zsra.note.model.Note
 
 @Dao
@@ -32,17 +32,25 @@ interface NoteDatabaseDao {
     @Query("Select * from note_table order by noteId desc limit 1")
     fun getNewNote() : Note?
 
-    /* Album */
-
     @Insert
-    fun insert(album: Album)
+    fun insert(contact: Contact)
 
-    @Query("select * from albun_table")
-    fun getAllAlbums() : LiveData<List<Note>>
+    @Update
+    fun update(contact: Contact)
 
-    @Query("select * from albun_table where albumId = :id")
-    fun getAlbumById(id : Long) : LiveData<Album>
+    @Query("select * from contact_table order by created_at desc")
+    fun getAllContacts() : LiveData<List<Contact>>
 
-    @Query("delete from albun_table")
-    fun clearAlbum()
+    @Query("select * from contact_table where contactId = :id")
+    fun getContactById(id : Long) : Contact
+
+    @Query("delete from contact_table")
+    fun clearContact()
+
+    @Query("select * from contact_table where contactId = :id")
+    fun getContactByIdLiveData(id : Long) : LiveData<Contact>
+
+    @Query("Select * from contact_table order by contactId desc limit 1")
+    fun getNewContact() : Contact?
+
 }

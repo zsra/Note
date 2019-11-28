@@ -21,8 +21,8 @@
             app:enterAnim="@anim/slide_in_right"
             app:popEnterAnim="@anim/slide_in_right"/>
         <action
-            android:id="@+id/action_noteListFragment_to_albumFragment"
-            app:destination="@id/albumFragment" />
+            android:id="@+id/action_noteListFragment_to_contactListFragment"
+            app:destination="@id/contactListFragment" />
     </fragment>
     <fragment
         android:id="@+id/noteCreateFragment"
@@ -54,34 +54,48 @@
             app:popUpTo="@+id/noteListFragment"
             app:popUpToInclusive="true"/>
     </fragment>
+
     <fragment
-        android:id="@+id/albumFragment"
-        android:name="hu.zsra.note.screen.album.AlbumFragment"
-        android:label="album_fragment"
-        tools:layout="@layout/album_fragment" >
+        android:id="@+id/contactListFragment"
+        android:name="hu.zsra.note.screen.contact_list.ContactListFragment"
+        android:label="ContactListFragment" >
         <action
-            android:id="@+id/action_albumFragment_to_noteListFragment"
-            app:destination="@id/noteListFragment"
-            app:launchSingleTop="false"
-            app:popUpTo="@+id/noteListFragment"
-            app:popUpToInclusive="true"/>
+            android:id="@+id/action_contactListFragment_to_noteListFragment"
+            app:destination="@id/noteListFragment" />
+
         <action
-            android:id="@+id/action_albumFragment_to_albumDetailsFragment"
-            app:destination="@id/albumDetailsFragment" />
+            android:id="@+id/action_contactListFragment_to_contactCreateFragment"
+            app:destination="@id/contactCreateFragment" />
+        <action
+            android:id="@+id/action_contactListFragment_to_contactDetailsFragment"
+            app:destination="@id/contactDetailsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/albumDetailsFragment"
-        android:name="hu.zsra.note.screen.album_details.AlbumDetailsFragment"
-        android:label="album_details_fragment"
-        tools:layout="@layout/album_details_fragment" >
+        android:id="@+id/contactCreateFragment"
+        android:name="hu.zsra.note.screen.contact_create.ContactCreateFragment"
+        android:label="ContactCreateFragment" >
         <argument
-            android:name="albumKey"
+            android:name="contactKey"
             app:argType="long" />
         <action
-            android:id="@+id/action_albumDetailsFragment_to_albumFragment"
-            app:destination="@id/albumFragment"
+            android:id="@+id/action_contactCreateFragment_to_contactListFragment"
+            app:destination="@id/contactListFragment"
             app:launchSingleTop="false"
-            app:popUpTo="@+id/albumFragment"
+            app:popUpTo="@+id/contactListFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/contactDetailsFragment"
+        android:name="hu.zsra.note.screen.contact_details.ContactDetailsFragment"
+        android:label="ContactDetailsFragment" >
+        <argument
+            android:name="contactKey"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_contactDetailsFragment_to_contactListFragment"
+            app:destination="@id/contactListFragment"
+            app:launchSingleTop="false"
+            app:popUpTo="@+id/contactListFragment"
             app:popUpToInclusive="true"/>
     </fragment>
 </navigation>

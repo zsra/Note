@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.GridLayout
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.snackbar.Snackbar
@@ -47,6 +48,11 @@ class NoteListFragment : Fragment() {
         })
 
         binding.setLifecycleOwner(this)
+
+        binding.contacts.setOnClickListener {
+            view : View -> view.findNavController().navigate(NoteListFragmentDirections
+            .actionNoteListFragmentToContactListFragment())
+        }
 
         noteListViewModel.showSnackBarEvent.observe(this, Observer {
             if(it == true) {

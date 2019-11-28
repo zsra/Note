@@ -15,45 +15,35 @@
         tools:context=".screen.note_list.NoteListFragment">
 
         <Button
-            android:id="@+id/album_list"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="288dp"
-            android:layout_marginTop="24dp"
-            android:background="@color/ThirdColor"
-            android:onClick="@{() -> noteListViewModel.onNew()}"
-            android:text="@string/album"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
             android:id="@+id/new_note"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="24dp"
             android:background="@color/PrimeColor"
             android:onClick="@{() -> noteListViewModel.onNew()}"
             android:text="@string/new_note"
-            android:textColor="@color/white"
-            android:textSize="14sp"
+            style="@style/Buttons"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/clear_notes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="170dp"
             android:background="@color/SecondColor"
             android:onClick="@{() -> noteListViewModel.onClear()}"
             android:text="@string/clear"
-            android:textColor="@color/white"
-            android:textSize="14sp"
+            style="@style/Buttons"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/contacts"
+            android:layout_marginStart="288dp"
+            android:layout_marginTop="24dp"
+            android:background="@color/ThirdColor"
+            android:text="@string/contacts"
+            style="@style/Buttons"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView

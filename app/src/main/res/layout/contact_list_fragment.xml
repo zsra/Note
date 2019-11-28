@@ -1,13 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".screen.contact_list.ContactListFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
+    <data>
+        <variable
+            name="contactListViewModel"
+            type="hu.zsra.note.screen.contact_list.ContactListViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        tools:context=".screen.contact_list.ContactListFragment">
 
-</FrameLayout>
+        <Button
+            android:id="@+id/new_contact"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:background="@color/PrimeColor"
+            android:onClick="@{() -> contactListViewModel.onNew()}"
+            android:text="@string/new_note"
+            style="@style/Buttons"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/clear_contacts"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="170dp"
+            android:background="@color/SecondColor"
+            android:onClick="@{() -> contactListViewModel.onClear()}"
+            android:text="@string/clear"
+            style="@style/Buttons"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/back"
+            android:layout_marginStart="288dp"
+            android:layout_marginTop="24dp"
+            android:background="@color/ThirdColor"
+            android:text="@string/back"
+            style="@style/Buttons"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/contact_list"
+            android:layout_width="409dp"
+            android:layout_height="657dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="52dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/new_contact" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
