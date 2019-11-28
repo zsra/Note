@@ -25,8 +25,8 @@ class NoteListViewModel(
     val showSnackBarEvent: LiveData<Boolean?>
         get() = _showSnackbarEvent
 
-    private val _navigateToNoteCreate= MutableLiveData<Note?>()
-    val navigateToNoteCreate : LiveData<Note?>
+    private val _navigateToNoteCreate= MutableLiveData<Note>()
+    val navigateToNoteCreate : LiveData<Note>
         get() = _navigateToNoteCreate
 
     fun doneShowingSnackbar() {
@@ -71,12 +71,6 @@ class NoteListViewModel(
         }
     }
 
-    private suspend fun update(note : Note) {
-        withContext(Dispatchers.IO) {
-            db.update(note)
-        }
-    }
-
     private suspend fun clear() {
         withContext(Dispatchers.IO) {
             db.clear()
@@ -90,7 +84,7 @@ class NoteListViewModel(
             insert(nnote)
 
             NewNote.value = getNewNoteFromDatabase()
-            _navigateToNoteCreate.value = nnote
+            _navigateToNoteCreate.value = NewNote.value
         }
     }
 
@@ -106,5 +100,9 @@ class NoteListViewModel(
         super.onCleared()
         viewModelJob.cancel()
     }
+
+    /* -- ALBUM -- */
+
+
 
 }

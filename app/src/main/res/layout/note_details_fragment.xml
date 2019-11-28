@@ -73,9 +73,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="156dp"
-            android:layout_marginEnd="16dp"
-            android:text="@{noteDetailsViewModel.note.no}"
-            android:textSize="14sp"
+            android:text="@{noteDetailsViewModel.note.noteText}"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

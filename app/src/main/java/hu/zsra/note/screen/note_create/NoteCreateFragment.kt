@@ -10,8 +10,15 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 
-import hu.zsra.note.R
 import hu.zsra.note.database.NoteDatabase
+import hu.zsra.note.databinding.NoteCreateFragmentBinding
+import kotlinx.android.synthetic.main.note_create_fragment.*
+import android.content.Context
+import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
+import androidx.core.content.ContextCompat.getSystemService
+import hu.zsra.note.R
+
 
 class NoteCreateFragment : Fragment() {
 
@@ -32,17 +39,22 @@ class NoteCreateFragment : Fragment() {
 
         binding.noteCreateViewModel = noteCreateViewModel
 
-        binding.navigateToNoteList.observe(this, Observer {
+        noteCreateViewModel.navigateToNoteList.observe(this, Observer {
             if(it == true) {
+                noteCreateViewModel.noteTitle = note_title_crt.text.toString()
+                noteCreateViewModel.noteText = note_body_crt.text.toString()
                 this.findNavController().navigate(NoteCreateFragmentDirections
                     .actionNoteCreateFragmentToNoteListFragment())
+
+                getActivity()?.getWindow()?.setSoftInputMode(
+                    WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
                 noteCreateViewModel.doneNavigating()
             }
         })
 
-
         return binding.root
     }
 
 }
+

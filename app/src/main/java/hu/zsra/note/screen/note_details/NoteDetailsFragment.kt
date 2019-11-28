@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 
 import hu.zsra.note.R
 import hu.zsra.note.database.NoteDatabase
+import hu.zsra.note.databinding.NoteDetailsFragmentBinding
 
 class NoteDetailsFragment : Fragment() {
 
@@ -34,7 +35,7 @@ class NoteDetailsFragment : Fragment() {
 
         binding.setLifecycleOwner(this)
 
-        binding.navigateToNoteList.observe(this, Observer {
+        noteDetailsViewModel.navigateToNoteList.observe(this, Observer {
             if(it == true) {
                 this.findNavController().navigate(NoteDetailsFragmentDirections
                     .actionNoteDetailsFragmentToNoteListFragment())

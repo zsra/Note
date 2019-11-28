@@ -20,6 +20,9 @@
             app:destination="@id/noteDetailsFragment"
             app:enterAnim="@anim/slide_in_right"
             app:popEnterAnim="@anim/slide_in_right"/>
+        <action
+            android:id="@+id/action_noteListFragment_to_albumFragment"
+            app:destination="@id/albumFragment" />
     </fragment>
     <fragment
         android:id="@+id/noteCreateFragment"
@@ -49,6 +52,36 @@
             app:destination="@id/noteListFragment"
             app:launchSingleTop="false"
             app:popUpTo="@+id/noteListFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/albumFragment"
+        android:name="hu.zsra.note.screen.album.AlbumFragment"
+        android:label="album_fragment"
+        tools:layout="@layout/album_fragment" >
+        <action
+            android:id="@+id/action_albumFragment_to_noteListFragment"
+            app:destination="@id/noteListFragment"
+            app:launchSingleTop="false"
+            app:popUpTo="@+id/noteListFragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_albumFragment_to_albumDetailsFragment"
+            app:destination="@id/albumDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/albumDetailsFragment"
+        android:name="hu.zsra.note.screen.album_details.AlbumDetailsFragment"
+        android:label="album_details_fragment"
+        tools:layout="@layout/album_details_fragment" >
+        <argument
+            android:name="albumKey"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_albumDetailsFragment_to_albumFragment"
+            app:destination="@id/albumFragment"
+            app:launchSingleTop="false"
+            app:popUpTo="@+id/albumFragment"
             app:popUpToInclusive="true"/>
     </fragment>
 </navigation>

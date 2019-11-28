@@ -1,6 +1,6 @@
 package hu.zsra.note.screen.note_create
 
-import android.app.Application
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,11 +9,14 @@ import kotlinx.coroutines.*
 
 class NoteCreateViewModel(
     dataSource: NoteDatabaseDao,
-    private val noteKey: Long) : ViewModel() {
+    private val noteKey: Long = 0L) : ViewModel() {
 
     val db = dataSource
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+
+    var noteTitle = ""
+    var noteText = ""
 
     private val _navigateToNoteList = MutableLiveData<Boolean?>()
     val navigateToNoteList : LiveData<Boolean?>
@@ -28,16 +31,19 @@ class NoteCreateViewModel(
         _navigateToNoteList.value = null
     }
 
-    fun onSetNote(title : String, text : String) {
+    fun onSetNote() {
         uiScope.launch {
+            _navigateToNoteList.value = true
+
             withContext(Dispatchers.IO) {
                 val newNote = db.getNoteById(noteKey)
-                newNote!!.noteTitle = title
-                newNote.noteText = text
+                Log.i("note", noteTitle)
+                newNote.noteTitle = noteTitle
+                newNote.noteText = noteText
                 db.update(newNote)
             }
 
-            _navigateToNoteList.value = true
+
         }
     }
 }

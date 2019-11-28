@@ -8,4 +8,6 @@
     <string name="create">create</string>
     <string name="title">Title</string>
     <string name="text">Text...</string>
+    <string name="empty">Empty</string>
+    <string name="album">album</string>
 </resources>
