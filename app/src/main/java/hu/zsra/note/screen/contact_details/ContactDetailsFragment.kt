@@ -1,4 +1,4 @@
-package hu.zsra.note.screen.album_details
+package hu.zsra.note.screen.contact_details
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -9,24 +9,24 @@ import android.view.ViewGroup
 
 import hu.zsra.note.R
 
-class AlbumDetailsFragment : Fragment() {
+class ContactDetailsFragment : Fragment() {
 
     companion object {
-        fun newInstance() = AlbumDetailsFragment()
+        fun newInstance() = ContactDetailsFragment()
     }
 
-    private lateinit var viewModel: AlbumDetailsViewModel
+    private lateinit var viewModel: ContactDetailsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.album_details_fragment, container, false)
+        return inflater.inflate(R.layout.contact_details_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(AlbumDetailsViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(ContactDetailsViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
