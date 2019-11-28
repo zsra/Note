@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import hu.zsra.note.database.NoteDatabaseDao
+import hu.zsra.note.model.Album
 import hu.zsra.note.model.Note
 import kotlinx.coroutines.*
 
@@ -25,7 +26,7 @@ class NoteListViewModel(
     val showSnackBarEvent: LiveData<Boolean?>
         get() = _showSnackbarEvent
 
-    private val _navigateToNoteCreate= MutableLiveData<Note>()
+    private val _navigateToNoteCreate = MutableLiveData<Note>()
     val navigateToNoteCreate : LiveData<Note>
         get() = _navigateToNoteCreate
 
@@ -103,6 +104,8 @@ class NoteListViewModel(
 
     /* -- ALBUM -- */
 
-
+    private val _navigateToAlbums = MutableLiveData<List<Album>>()
+    val navigateToAlbum: LiveData<List<Album>>
+        get() = _navigateToAlbums
 
 }

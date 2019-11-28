@@ -10,4 +10,5 @@
     <string name="text">Text...</string>
     <string name="empty">Empty</string>
     <string name="album">album</string>
+    <string name="albums">Albums</string>
 </resources>
