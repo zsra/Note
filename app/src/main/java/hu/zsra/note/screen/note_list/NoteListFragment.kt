@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.GridLayout
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -41,9 +42,9 @@ class NoteListFragment : Fragment() {
         })
         binding.noteList.adapter = adapter
 
-        noteListViewModel.notes!!.observe(viewLifecycleOwner, Observer {
+        noteListViewModel.notes.observe(viewLifecycleOwner, Observer {
             it?.let {
-                adapter.submitList(it)
+                adapter.addHeaderAndSubmitList(it)
             }
         })
 

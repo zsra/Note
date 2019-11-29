@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="35sp"
             android:id="@+id/label_contact"
-            android:text="@{contact.contactName}"
+            app:setContactNameText="@{contact}"
             android:textSize="22sp"
             android:layout_marginStart="40sp"
             android:layout_marginTop="8dp"

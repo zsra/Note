@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import hu.zsra.note.model.Contact
 import hu.zsra.note.model.Note
 
-@Database(entities = [Note::class, Contact::class], version = 1, exportSchema = false)
+@Database(entities = [Note::class, Contact::class], version = 2, exportSchema = false)
 abstract class NoteDatabase : RoomDatabase() {
 
     abstract val noteDatabaseDao : NoteDatabaseDao

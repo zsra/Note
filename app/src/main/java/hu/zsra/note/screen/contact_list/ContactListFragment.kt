@@ -46,9 +46,9 @@ class ContactListFragment : Fragment() {
         })
         binding.contactList.adapter = adapter
 
-        contactListViewModel.Contacts!!.observe(viewLifecycleOwner, Observer {
+        contactListViewModel.Contacts.observe(viewLifecycleOwner, Observer {
             it?.let {
-                adapter.submitList(it)
+                adapter.addHeaderAndSubmitList(it)
             }
         })
 

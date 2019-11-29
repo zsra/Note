@@ -13,4 +13,6 @@
     <string name="contact_email">Contact Email</string>
     <string name="name">Name</string>
     <string name="contacts">contacts</string>
+    <string name="notes">Notes</string>
+    <string name="new_contact">New Contact</string>
 </resources>

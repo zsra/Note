@@ -24,7 +24,7 @@ class NoteDetailsFragment : Fragment() {
             inflater, R.layout.note_details_fragment, container, false)
 
         val application = requireNotNull(this.activity).application
-        val arguments = this!!.arguments?.let { NoteDetailsFragmentArgs.fromBundle(it) }
+        val arguments = this.arguments?.let { NoteDetailsFragmentArgs.fromBundle(it) }
         val dataSource = NoteDatabase.getInstance(application).noteDatabaseDao
         val viewModelFactory = NoteDetailsViewModelFactory(dataSource, arguments!!.noteKey)
 
