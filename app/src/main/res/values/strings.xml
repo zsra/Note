@@ -15,4 +15,5 @@
     <string name="contacts">contacts</string>
     <string name="notes">Notes</string>
     <string name="new_contact">New Contact</string>
+    <string name="created_at">Created at:</string>
 </resources>

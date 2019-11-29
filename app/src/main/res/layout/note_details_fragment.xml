@@ -16,13 +16,13 @@
 
         <Button
             android:id="@+id/note_back"
+            style="@style/Buttons"
             android:layout_width="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="24dp"
             android:background="@color/PrimeColor"
             android:onClick="@{() -> noteDetailsViewModel.onClose()}"
             android:text="@string/back"
-            style="@style/Buttons"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,19 +45,19 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="164dp"
             android:layout_marginTop="16dp"
-            app:setNoteTitleText="@{noteDetailsViewModel.note}"
             android:textColor="@color/PrimeColor"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/note_back" />
+            app:layout_constraintTop_toBottomOf="@+id/note_back"
+            app:setNoteTitleText="@{noteDetailsViewModel.note}" />
 
         <TextView
             android:id="@+id/label_body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="52dp"
+            android:layout_marginTop="64dp"
             android:text="@string/note_body"
             android:textColor="@color/PrimeColor"
             android:textSize="18sp"
@@ -71,11 +71,38 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="156dp"
-            app:setNoteBodyText="@{noteDetailsViewModel.note}"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:setNoteBodyText="@{noteDetailsViewModel.note}" />
+
+        <TextView
+            android:id="@+id/note_createdAt_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="112dp"
+            android:text="@string/created_at"
+            android:textColor="@color/PrimeColor"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/note_createdAt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="164dp"
+            android:layout_marginTop="116dp"
+            android:text="@{noteDetailsViewModel.createdAtString}"
+            android:textColor="@color/PrimeColor"
+            android:textSize="12sp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
